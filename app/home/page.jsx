@@ -1,8 +1,14 @@
 
 import Link from "next/link"
 import SectionCards from "./components/sectionCards";
+import Paginate from "./components/paginate";
+import { func } from "../api/func";
 
-export default function HomePage({ searchParams }) {
+export default async function HomePage({ searchParams }) {
+
+  const countries = await func.getAllCountries()
+  const pageSizes = 15
+  const totalPages = Math.ceil(countries.length / pageSizes)
 
   return (
     <main>
@@ -13,11 +19,11 @@ export default function HomePage({ searchParams }) {
         >
           Salir
         </Link>
-        <Link href={"/create"} >Create Activity</Link>
-        {/* <InputSearch /> */}
+        <Link href={{pathname: "/create", query: searchParams}} >Create Activity</Link>
       </nav>
-      <section className="flex flex-wrap justify-evenly gap-5 my-10 mx-6">
-        <SectionCards searchParams={searchParams} />
+      <section className="grid grid-rows-[auto,50px]">
+        <SectionCards searchParams={searchParams} pageSizes={pageSizes} />
+        <Paginate pageSizes={pageSizes} totalPages={totalPages}/>
       </section>
     </main>
   );
