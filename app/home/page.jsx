@@ -22,8 +22,8 @@ export default async function HomePage({ searchParams }) {
         <Link href={{pathname: "/create", query: searchParams}} >Create Activity</Link>
       </nav>
       <section className="grid grid-rows-[auto,50px]">
-        <SectionCards searchParams={searchParams} pageSizes={pageSizes} />
         <Paginate pageSizes={pageSizes} totalPages={totalPages}/>
+        <SectionCards searchParams={searchParams} pageSizes={pageSizes} />
       </section>
     </main>
   );

@@ -55,8 +55,8 @@ export default function Paginate({ totalPages }) {
           className="h-8 w-12 rounded border-none bg-transparent p-0 text-center text-xs font-medium [-moz-appearance:_textfield] focus:outline-none focus:ring-inset focus:ring-white [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
           min="1"
           max={totalPages}
-        //   defaultValue={actualPage}
-          value={actualPage}
+          defaultValue={actualPage}
+          // value={actualPage}
           onChange={(e) => handleOnChange(e.target.value)}
           id="PaginationPage"
         />
