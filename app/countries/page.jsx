@@ -2,11 +2,11 @@
 import Link from "next/link"
 import SectionCards from "./components/sectionCards";
 import Paginate from "./components/paginate";
-import { func } from "../api/func";
+import { funcCountry } from "../api/func";
 
 export default async function HomePage({ searchParams }) {
 
-  const countries = await func.getAllCountries()
+  const countries = await funcCountry.getAllCountries()
   const pageSizes = 15
   const totalPages = Math.ceil(countries.length / pageSizes)
 
@@ -19,7 +19,7 @@ export default async function HomePage({ searchParams }) {
         >
           Salir
         </Link>
-        <Link href={{pathname: "/create", query: searchParams}} >Create Activity</Link>
+        {/* <Link href={{pathname: "/create", query: searchParams}} >Create Activity</Link> */}
       </nav>
       <section className="grid grid-rows-[auto,50px]">
         <Paginate pageSizes={pageSizes} totalPages={totalPages}/>

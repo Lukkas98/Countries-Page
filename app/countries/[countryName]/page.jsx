@@ -1,11 +1,11 @@
-import { func } from "@/app/api/func";
+import { funcCountry } from "@/app/api/func";
 import Link from "next/link";
 import Image from "next/image";
 
 export default async function Detail({ params, searchParams }) {
-  const { countryId } = params;
+  const { countryName } = params;
 
-  const country = await func.getCountry(countryId);
+  const country = await funcCountry.getCountryByName(countryName);
   const {
     name,
     image,
@@ -15,12 +15,12 @@ export default async function Detail({ params, searchParams }) {
     capital,
     area,
     region,
-    ActivitiesName,
+    // ActivitiesName,
   } = country;
 
   return (
     <main className="flex flex-col gap-3 items-center">
-      <Link href={{pathname: "/home", query: searchParams}}>Volver</Link>
+      <Link href={{pathname: "/countries", query: searchParams}}>Volver</Link>
       <h2>{name}</h2>
       <Image src={image} width={200} height={200} alt={`${name} flag`} />
       <p>population: {population}</p>
@@ -29,12 +29,12 @@ export default async function Detail({ params, searchParams }) {
       <p>capital: {capital}</p>
       <p>area: {area}</p>
       <p>region: {region}</p>
-      <div>
+      {/* <div>
         <p>Activities: </p>
         {ActivitiesName?.map((activity) => (
           <p key={activity._id}>{activity.name}</p>
         ))}
-      </div>
+      </div> */}
     </main>
   );
 }

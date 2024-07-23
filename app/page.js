@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Footer from "./home/components/footer";
+import Footer from "./countries/components/footer";
 
 export default function Landing() {
   return (
@@ -12,7 +12,7 @@ export default function Landing() {
           Get detailed information from any country in the world.
         </p>
         <Link
-          href="/home"
+          href="/countries"
           className="px-8 py-4 bg-blue-600 text-white rounded-md text-lg hover:bg-blue-700 transition"
         >
           Enter
