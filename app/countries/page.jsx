@@ -3,6 +3,7 @@ import SectionCards from "./components/sectionCards";
 import Paginate from "./components/paginate";
 import { funcCountry } from "../api/func";
 import { DashiconsExit } from "@/public/DashiconsExit";
+import { Suspense } from "react";
 
 export default async function HomePage({ searchParams }) {
   const countries = await funcCountry.getAllCountries();
@@ -25,8 +26,10 @@ export default async function HomePage({ searchParams }) {
       </nav>
       <section className="grid">
         <div className="m-4">
-          <Paginate pageSizes={pageSizes} totalPages={totalPages} />
-          <SectionCards searchParams={searchParams} pageSizes={pageSizes} />
+          <Suspense fallback={<div>CARGANDO...</div>}>
+            <Paginate pageSizes={pageSizes} totalPages={totalPages} />
+            <SectionCards searchParams={searchParams} pageSizes={pageSizes} />
+          </Suspense>
         </div>
       </section>
     </main>
