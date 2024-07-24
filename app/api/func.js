@@ -2,7 +2,7 @@ import connectDB from "@/lib/dbConnect";
 import { ActivityModel } from "@/models/Activity";
 import { CountryModel } from "@/models/Country";
 
-export const func = {
+export const funcCountry = {
   getCountries: async (page = 1, pageSize) => {
     await connectDB();
 
@@ -24,12 +24,20 @@ export const func = {
     if (!countries) throw new Error("There are no countries");
     return countries;
   },
-  getCountry: async (id) => {
+  getCountryById: async (id) => {
     await connectDB();
     const country = await CountryModel.findById(id).populate("activities");
 
-    if (!country) return `Country ID: ${id} not found`;
+    if (!country) throw new Error(`Country ID: ${id} not found`);
 
-    return country
+    return country;
+  },
+  getCountryByName: async (name) => {
+    await connectDB();
+    const formatedName = name.split("-").join(" ");
+    const country = await CountryModel.findOne({ name: formatedName });
+
+    if (!country) throw new Error(`Country name: ${name} not found`);
+    return country;
   },
 };
